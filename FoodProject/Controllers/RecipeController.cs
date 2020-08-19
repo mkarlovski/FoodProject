@@ -8,9 +8,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FoodProject.Controllers
 {
-    public class HomeController : Controller
+    public class RecipeController : Controller
     {
-        public IActionResult Index()
+        public IActionResult Overview()
         {
             return View();
         }
