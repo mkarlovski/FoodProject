@@ -13,6 +13,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using FoodProject.Data;
+using FoodProject.Repositories.Interfaces;
+using FoodProject.Repositories;
+using FoodProject.Services.Interfaces;
+using FoodProject.Services;
 
 namespace FoodProject
 {
@@ -41,6 +45,9 @@ namespace FoodProject
             services.AddDefaultIdentity<IdentityUser>()
                 .AddDefaultUI(UIFramework.Bootstrap4)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddTransient<IRecipeRepository, RecipeRepository>();
+            services.AddTransient<IRecipeService, RecipeService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
