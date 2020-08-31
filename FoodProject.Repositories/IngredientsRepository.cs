@@ -38,11 +38,7 @@ namespace FoodProject.Repositories
         }
 
         public void Remove(Ingredient ingDb)
-        {
-            //var ing = new Ingredient()
-            //{
-            //    Id = ingDb.Id
-            //};
+        {         
             context.Ingredients.Remove(ingDb);
             context.SaveChanges();
            
