@@ -17,5 +17,15 @@ namespace FoodProject.Common
                 Name=ingredient.Name
             };
         }
+
+        public static Ingredient ToIngredientModel(this IngredientOverviewModel ingredient)
+        {
+            return new Ingredient {Id=ingredient.Id,Name=ingredient.Name };
+        }
+
+        public static Ingredient ToIngredientCreate(this IngredientCreateModel ingredient)
+        {
+            return new Ingredient { Name = ingredient.Name };
+        }
     }
 }

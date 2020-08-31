@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace FoodProject.ViewModels
 {
-    public class IngredientOverviewModel
+    public class IngredientCreateModel
     {
-        public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-
     }
 }
