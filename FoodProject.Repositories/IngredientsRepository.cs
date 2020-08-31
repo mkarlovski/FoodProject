@@ -37,6 +37,17 @@ namespace FoodProject.Repositories
             return context.Ingredients.FirstOrDefault(x => x.Name == name);
         }
 
+        public void Remove(Ingredient ingDb)
+        {
+            //var ing = new Ingredient()
+            //{
+            //    Id = ingDb.Id
+            //};
+            context.Ingredients.Remove(ingDb);
+            context.SaveChanges();
+           
+        }
+
         public void Update(Ingredient ingredient)
         {
             context.Ingredients.Update(ingredient);

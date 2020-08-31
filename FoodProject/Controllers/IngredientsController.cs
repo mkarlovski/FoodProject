@@ -72,7 +72,9 @@ namespace FoodProject.Controllers
 
         public IActionResult Delete(int id)
         {
-            return View();
+            var ingDb = ingredientsService.GetById(id);
+            ingredientsService.Remove(ingDb);
+            return RedirectToAction("Overview");
         }
     }
 }

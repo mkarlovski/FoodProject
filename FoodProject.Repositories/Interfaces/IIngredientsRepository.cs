@@ -12,5 +12,6 @@ namespace FoodProject.Repositories.Interfaces
         void Update(Ingredient ingredient);
         Ingredient GetByName(string name);
         void Create(Ingredient ing);
+        void Remove(Ingredient ingDb);
     }
 }
