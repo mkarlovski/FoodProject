@@ -1,10 +1,12 @@
-﻿using System;
+﻿using FoodProject.Data;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FoodProject.Repositories.Interfaces
 {
-   public interface IRecipeRepository
+    public interface IRecipeRepository
     {
+        List<Recipe> GetAll();
     }
 }

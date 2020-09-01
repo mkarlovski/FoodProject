@@ -2,6 +2,7 @@
 using FoodProject.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace FoodProject.Repositories
@@ -13,6 +14,11 @@ namespace FoodProject.Repositories
         public RecipeRepository(ApplicationDbContext context)
         {
             this.context = context;
+        }
+
+        public List<Recipe> GetAll()
+        {
+            return context.Recipes.ToList();
         }
     }
 }

@@ -27,5 +27,16 @@ namespace FoodProject.Common
         {
             return new Ingredient { Name = ingredient.Name };
         }
+
+        public static RecipeOverview ToRecipeOverview(this Recipe recipe)
+        {
+            return new RecipeOverview 
+            {
+                Id=recipe.Id,
+                Title=recipe.Title,
+                ImageURL=recipe.ImageURL,
+                Description=recipe.Description
+            };
+        }
     }
 }

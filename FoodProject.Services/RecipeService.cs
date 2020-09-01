@@ -1,4 +1,5 @@
-﻿using FoodProject.Repositories.Interfaces;
+﻿using FoodProject.Data;
+using FoodProject.Repositories.Interfaces;
 using FoodProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,11 @@ namespace FoodProject.Services
         public RecipeService(IRecipeRepository recipeRepository)
         {
             this.recipeRepository = recipeRepository;
+        }
+
+        public List<Recipe> GetAll()
+        {
+            return recipeRepository.GetAll();
         }
     }
 }
