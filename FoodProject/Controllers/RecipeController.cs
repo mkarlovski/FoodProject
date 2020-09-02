@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FoodProject.Common;
 using FoodProject.Services.Interfaces;
+using FoodProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 //using FoodProject.Models;
 
@@ -27,6 +28,14 @@ namespace FoodProject.Controllers
 
         public IActionResult Create()
         {
+            var recipe = new RecipeCreateView();
+            return View(recipe);
+        }
+
+        [HttpPost]
+        public IActionResult Create(RecipeCreateView recipe)
+        {
+
             return View();
         }
 
