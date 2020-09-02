@@ -3,6 +3,10 @@
     ViewData["Title"] = "Home Page";
 }
 
+    <p>
+        <a asp-action="Create">Add new recipe</a>
+    </p>
+
     <div class="row">
         @foreach (var recipe in Model)
         {

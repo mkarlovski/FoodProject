@@ -25,6 +25,11 @@ namespace FoodProject.Controllers
             return View(recipes);
         }
 
+        public IActionResult Create()
+        {
+            return View();
+        }
+
 
 
 

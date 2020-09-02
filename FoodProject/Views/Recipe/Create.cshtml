@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<form action="Create" method="post">
+    <ul id="CreateRecipe">
+        <li>
+            <input name="Title" type="text" placeholder="Title" />
+        </li>
+        <li>
+            <input name="Description" type="text" placeholder="Phone" />
+        </li>
+        <li>
+            <input name="ingredient[]" type="text" placeholder="ingredient">
+        </li>
+    </ul>
+    <button id="addIngredient" onclick="AddIngredient(); return false;">Add more fields</button>
+    <br>
+    <br>
+    <input type="submit">
+</form>
+
+@section Scripts
+{ 
+<script>
+    function AddIngredient() {
+        
+        var list = document.getElementById("CreateRecipe");
+        var newList = document.createElement("li");
+        var input = document.createElement("input");
+        input.setAttribute("name", "ingredient[]");
+        input.setAttribute("type", "text");
+        input.setAttribute("placeholder","Enter Ingredient");;
+        list.appendChild(newList);
+        newList.appendChild(input);
+       
+    }
+</script>
+
+}
