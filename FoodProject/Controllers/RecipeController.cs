@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FoodProject.Controllers
 {
+    //[Route("[controller]")]
     public class RecipeController : Controller
     {
         private readonly IRecipeService recipeService;
@@ -26,14 +27,14 @@ namespace FoodProject.Controllers
             return View(recipes);
         }
 
-        public IActionResult Create()
+        public IActionResult CreateTest()
         {
             var recipe = new RecipeCreateView();
             return View(recipe);
         }
 
         [HttpPost]
-        public IActionResult Create(RecipeCreateView recipe)
+        public IActionResult CreateTest([FromBody]RecipeCreateView recipe)
         {
 
             return View();

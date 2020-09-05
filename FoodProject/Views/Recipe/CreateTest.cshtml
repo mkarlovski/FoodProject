@@ -1,0 +1,121 @@
+﻿@model FoodProject.ViewModels.RecipeCreateView
+
+@{
+    ViewData["Title"] = "CreateTest";
+}
+
+<h1>CreateTest</h1>
+
+<h4>RecipeCreateView</h4>
+<hr />
+@*<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CreateTest" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div id="ingredientContainerForm">
+                <div class="form-group addIngredients">
+                    <label asp-for="Ingredients" class="control-label"></label>
+                    <input asp-for="Ingredients[0]" class="form-control" />
+                    <span asp-validation-for="Ingredients[0]" class="text-danger"></span>
+                </div>
+            </div>
+            <p>Please add the ingredients:</p>
+            <ol id="CreateRecipe">
+                <li class="addIngredientList" id="Ingredient1">
+                    <input asp-for="Ingredients[0]" type="text" placeholder="Add Ingredient">
+                </li>
+                <li class="addIngredientList" id="Ingredient2">
+                    <input asp-for="Ingredients[1]" type="text" placeholder="Add Ingredient">
+                </li>
+            </ol>
+
+            <button id="addIngredient" class="btn-sm btn-primary " onclick="AddIngredient(); return false;">Add more fields</button>
+           
+            <br />
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+    </div>*@
+
+
+<div class="container form-container">
+   
+    <div class="form-group">
+        <label asp-for="Title" class="control-label"></label>
+        <input asp-for="Title" id="recipeTitle" class="form-control" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" id="recipeDescription" class="form-control" />
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <p>Add ingredients:</p>
+    <ol id="CreateRecipe">
+        <li class="addIngredientList" id="Ingredient1">
+            <input asp-for="Ingredients[0]" id="recipeIngredient[0]" class="recipeIngredientClass" type="text" placeholder="Add Ingredient">
+        </li>
+    </ol>
+    <button id="addIngredient" class="btn-sm btn-primary " onclick="AddIngredient(); return false;">Add ingredient</button>
+
+    <button class="btn btn-primary" onclick="CreateRecipe()">Add recipe</button>
+</div>
+
+
+@section Scripts
+{
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script src="~/js/createRecipe.js"></script>
+    <script>
+
+
+       
+
+
+        //function AddIngredient() {
+        //    debugger;
+        //    var ingredientContainer = document.getElementById("ingredientContainerForm");
+        //    var ingredientCount = document.getElementsByClassName("addIngredients").length;
+
+        //    var newIngredient = document.createElement("div");
+        //    newIngredient.classList.add("form-group");
+        //    newIngredient.classList.add("addIngredients");
+
+        //    var label = document.createElement("label");
+        //    input.setAttribute("asp-for", "Ingredients[" + ingredientCount + "]");
+        //    input.setAttribute("type", "text");
+        //    input.classList.add("control-label");
+
+
+        //    var input = document.createElement("input");
+        //    input.setAttribute("asp-for", "Ingredients");
+        //    input.setAttribute("type", "text");
+        //    input.setAttribute("placeholder", "Enter Ingredient");
+        //    input.classList.add("form-control");
+
+        //    var span = document.createElement("span");
+        //    span.setAttribute("asp-validation-for", "Ingredients[" + ingredientCount + "]");
+        //    span.classList.add("text-danger");
+
+        //    ingredientContainer.appendChild(newIngredient);
+        //    newIngredient.appendChild(label);
+        //    newIngredient.appendChild(input);
+        //    newIngredient.appendChild(span);
+
+        //}
+    </script>
+
+}
