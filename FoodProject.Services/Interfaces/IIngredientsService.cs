@@ -12,5 +12,6 @@ namespace FoodProject.Services.Interfaces
         void Update(Ingredient ingDb);
         void Create(Ingredient ingredient);
         void Remove(Ingredient ingDb);
+        List<Ingredient> GetAllByName(List<string> ingredients);
     }
 }

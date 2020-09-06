@@ -38,5 +38,19 @@ namespace FoodProject.Common
                 Description=recipe.Description
             };
         }
+
+        public static Recipe ToRecipeCreate(this RecipeCreateView recipe)
+        {
+            return new Recipe 
+            {
+                Title=recipe.Title,
+                Description=recipe.Description
+                //RecipeIngredients=recipe.Ingredients.Select
+            };
+        }
+
+        //public static RecipeIngredient ToRecipeIngredient(this )
+
+
     }
 }

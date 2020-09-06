@@ -27,6 +27,11 @@ namespace FoodProject.Repositories
             return context.Ingredients.ToList();
         }
 
+        public List<Ingredient> GetAllByName(List<string> ingredients)
+        {
+            return context.Ingredients.Where(x => ingredients.Contains(x.Name)).ToList();
+        }
+
         public Ingredient GetById(int id)
         {
             return context.Ingredients.FirstOrDefault(x => x.Id == id);

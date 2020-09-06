@@ -1,5 +1,5 @@
 ﻿function CreateRecipe() {
-    debugger;
+    
     var ingredients = [];
 
     var title = document.getElementById("recipeTitle").value;

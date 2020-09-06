@@ -33,6 +33,11 @@ namespace FoodProject.Services
             return ingredientsRepository.GetAll();
         }
 
+        public List<Ingredient> GetAllByName(List<string> ingredients)
+        {
+            return ingredientsRepository.GetAllByName(ingredients);           
+        }
+
         public Ingredient GetById(int id)
         {
             return ingredientsRepository.GetById(id);
