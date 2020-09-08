@@ -7,7 +7,10 @@
     var ingredientList = document.getElementsByClassName("recipeIngredientClass");
     for (i = 0; i < ingredientList.length; i++) {
         var ingredientValue = document.getElementById("recipeIngredient[" + i + "]").value;
-        ingredients.push(ingredientValue);
+        if (ingredientValue != null) {
+            ingredients.push(ingredientValue);
+        }
+        
     }
     var preparation = document.getElementById("recipePreparation").value;
     var imageUrl = document.getElementById("recipeImageUrl").value;
@@ -38,14 +41,15 @@ function AddIngredient() {
 
     var newList = document.createElement("li");
     newList.classList.add("addIngredientList");
-    newList.style.listStyleType = "none";
+    //newList.style.listStyleType = "none";
 
     var input = document.createElement("input");
     input.setAttribute("asp-for", "Ingredients[" + ingredientCount + "]");
     input.setAttribute("type", "text"); 
     input.setAttribute("placeholder", "Enter Ingredient");
     input.classList.add("recipeIngredientClass");
-    input.id = "recipeIngredient["+ingredientCount+"]";
+    input.id = "recipeIngredient[" + ingredientCount + "]";
+    input.style.border = "none";
 
     list.appendChild(newList);
     newList.appendChild(input);

@@ -58,10 +58,10 @@ namespace FoodProject.Controllers
                 var recipeToDb = recipe.ToRecipeCreate();
 
                 recipeService.Create(recipeToDb, ingredientsDB);
-
+                return RedirectToAction("Overview");
             }
 
-            return RedirectToAction("Overview");
+            return View(recipe);
         }
 
 
