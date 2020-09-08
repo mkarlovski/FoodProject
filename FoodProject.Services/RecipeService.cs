@@ -21,7 +21,10 @@ namespace FoodProject.Services
             var newRecipe = new Recipe()
             {
                 Title = recipeToDb.Title,
-                Description = recipeToDb.Description,                
+                Description = recipeToDb.Description,
+                Preparation = recipeToDb.Preparation,
+                ImageURL = recipeToDb.ImageURL,
+                DateCreated = DateTime.Now
             };
             recipeRepository.Create(newRecipe);
             var newRecipeFromDb = recipeRepository.GetByTitle(recipeToDb.Title);

@@ -12,6 +12,8 @@ namespace FoodProject.Data
         public string Description { get; set; }
        
         public string Preparation { get; set; }
+        public DateTime DateCreated { get; set; }
+
         public List<RecipeIngredient> RecipeIngredients { get; set; }
 
 

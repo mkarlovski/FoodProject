@@ -9,13 +9,16 @@
         var ingredientValue = document.getElementById("recipeIngredient[" + i + "]").value;
         ingredients.push(ingredientValue);
     }
-
+    var preparation = document.getElementById("recipePreparation").value;
+    var imageUrl = document.getElementById("recipeImageUrl").value;
 
     axios.post('https://localhost:44319/Recipe/CreateTest', {
         
         title: title,
         description: description,
-        ingredients: ingredients
+        ingredients: ingredients,
+        preparation: preparation,
+        imageUrl:imageUrl
     })
         .then(function (response) {
             console.log(response.data);
@@ -48,8 +51,3 @@ function AddIngredient() {
     newList.appendChild(input);
 
 }
-//<ol id="CreateRecipe">
-//    <li class="addIngredientList" id="Ingredient1">
-//        <input asp-for="Ingredients[0]" id="recipeIngredient[0]" class="recipeIngredientClass" type="text" placeholder="Add Ingredient">
-//        </li>
-//    </ol>

@@ -61,7 +61,7 @@ namespace FoodProject.Controllers
 
             }
 
-            return View();
+            return RedirectToAction("Overview");
         }
 
 

@@ -20,12 +20,19 @@ namespace FoodProject.Common
 
         public static Ingredient ToIngredientModel(this IngredientOverviewModel ingredient)
         {
-            return new Ingredient {Id=ingredient.Id,Name=ingredient.Name };
+            return new Ingredient 
+            {
+                Id=ingredient.Id,
+                Name=ingredient.Name 
+            };
         }
 
         public static Ingredient ToIngredientCreate(this IngredientCreateModel ingredient)
         {
-            return new Ingredient { Name = ingredient.Name };
+            return new Ingredient 
+            {
+                Name = ingredient.Name
+            };
         }
 
         public static RecipeOverview ToRecipeOverview(this Recipe recipe)
@@ -34,8 +41,9 @@ namespace FoodProject.Common
             {
                 Id=recipe.Id,
                 Title=recipe.Title,
-                //ImageURL=recipe.ImageURL,
-                Description=recipe.Description
+                ImageURL = recipe.ImageURL,
+                Description =recipe.Description,
+                DateCreated=recipe.DateCreated
             };
         }
 
@@ -44,8 +52,9 @@ namespace FoodProject.Common
             return new Recipe 
             {
                 Title=recipe.Title,
-                Description=recipe.Description
-                //RecipeIngredients=recipe.Ingredients.Select
+                Description=recipe.Description,
+                Preparation=recipe.Preparation,
+                ImageURL=recipe.ImageUrl,
             };
         }
 
