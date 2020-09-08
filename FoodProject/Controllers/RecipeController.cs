@@ -54,7 +54,10 @@ namespace FoodProject.Controllers
                         ingredientsService.Create(newIng);
                     }                
                 }
+                var ingredientsDB = ingredientsService.GetAllByName(recipe.Ingredients);
+                var recipeToDb = recipe.ToRecipeCreate();
 
+                recipeService.Create(recipeToDb, ingredientsDB);
 
             }
 

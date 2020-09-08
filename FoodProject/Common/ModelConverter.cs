@@ -34,7 +34,7 @@ namespace FoodProject.Common
             {
                 Id=recipe.Id,
                 Title=recipe.Title,
-                ImageURL=recipe.ImageURL,
+                //ImageURL=recipe.ImageURL,
                 Description=recipe.Description
             };
         }

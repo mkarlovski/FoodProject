@@ -16,9 +16,26 @@ namespace FoodProject.Repositories
             this.context = context;
         }
 
+        public void Create(Recipe newRecipe)
+        {
+            context.Recipes.Add(newRecipe);
+            context.SaveChanges();
+        }
+
         public List<Recipe> GetAll()
         {
             return context.Recipes.ToList();
+        }
+
+        public Recipe GetByTitle(string title)
+        {
+            return context.Recipes.FirstOrDefault(x=>x.Title==title);
+        }
+
+        public void Update(Recipe newRecipeFromDb)
+        {
+            context.Recipes.Update(newRecipeFromDb);
+            context.SaveChanges();
         }
     }
 }

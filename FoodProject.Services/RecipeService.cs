@@ -16,6 +16,31 @@ namespace FoodProject.Services
             this.recipeRepository = recipeRepository;
         }
 
+        public void Create(Recipe recipeToDb, List<Ingredient> ingredientsDB)
+        {
+            var newRecipe = new Recipe()
+            {
+                Title = recipeToDb.Title,
+                Description = recipeToDb.Description,                
+            };
+            recipeRepository.Create(newRecipe);
+            var newRecipeFromDb = recipeRepository.GetByTitle(recipeToDb.Title);
+
+            var recipeIngredients = new List<RecipeIngredient>();
+            foreach(var ingredient in ingredientsDB)
+            {
+                var ing = new RecipeIngredient()
+                {
+                    RecipeId=newRecipeFromDb.Id,
+                    IngredientId = ingredient.Id
+                };
+                recipeIngredients.Add(ing);
+            }
+            newRecipeFromDb.RecipeIngredients = recipeIngredients;
+            recipeRepository.Update(newRecipeFromDb);
+
+        }
+
         public List<Recipe> GetAll()
         {
             return recipeRepository.GetAll();
