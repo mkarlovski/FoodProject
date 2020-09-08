@@ -11,5 +11,6 @@ namespace FoodProject.Repositories.Interfaces
         void Create(Recipe newRecipe);
         Recipe GetByTitle(string title);
         void Update(Recipe newRecipeFromDb);
+        Recipe GetById(int id);
     }
 }

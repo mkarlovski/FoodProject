@@ -1,5 +1,6 @@
 ﻿using FoodProject.Data;
 using FoodProject.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,11 @@ namespace FoodProject.Repositories
         public List<Recipe> GetAll()
         {
             return context.Recipes.ToList();
+        }
+
+        public Recipe GetById(int id)
+        {
+            return context.Recipes.Include(x => x.RecipeIngredients).FirstOrDefault(x => x.Id == id);
         }
 
         public Recipe GetByTitle(string title)

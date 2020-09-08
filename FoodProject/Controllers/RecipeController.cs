@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace FoodProject.Controllers
 {
-    //[Route("[controller]")]
+    
     public class RecipeController : Controller
     {
         private readonly IRecipeService recipeService;
@@ -62,6 +62,14 @@ namespace FoodProject.Controllers
             }
 
             return View(recipe);
+        }
+
+
+        public IActionResult Details(int id)
+        {
+            var recipeDb = recipeService.GetById(id);
+
+            return View();
         }
 
 

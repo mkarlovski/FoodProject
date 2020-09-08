@@ -48,5 +48,14 @@ namespace FoodProject.Services
         {
             return recipeRepository.GetAll();
         }
+
+        public Recipe GetById(int id)
+        {
+            var recipe = recipeRepository.GetById(id);
+            recipe.Views += 1;
+            recipeRepository.Update(recipe);
+
+            return recipe;
+        }
     }
 }
