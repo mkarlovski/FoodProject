@@ -4,16 +4,20 @@ using FoodProject.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
 
 namespace FoodProject.Services
 {
     public class RecipeService: IRecipeService
     {
         private readonly IRecipeRepository recipeRepository;
+        private readonly IConfiguration configuration;
 
-        public RecipeService(IRecipeRepository recipeRepository)
+        public RecipeService(IRecipeRepository recipeRepository,IConfiguration configuration)
         {
             this.recipeRepository = recipeRepository;
+            this.configuration = configuration;
         }
 
         public void Create(Recipe recipeToDb, List<Ingredient> ingredientsDB)
@@ -23,9 +27,11 @@ namespace FoodProject.Services
                 Title = recipeToDb.Title,
                 Description = recipeToDb.Description,
                 Preparation = recipeToDb.Preparation,
-                ImageURL = recipeToDb.ImageURL,
+                //ImageURL = recipeToDb.ImageURL,
+                //ImageURL=,
                 DateCreated = DateTime.Now
             };
+            
             recipeRepository.Create(newRecipe);
             var newRecipeFromDb = recipeRepository.GetByTitle(recipeToDb.Title);
 

@@ -2,26 +2,38 @@
 @{
     ViewData["Title"] = "Home Page";
 }
+@inject IConfiguration configuration
 
-    <p>
-        <a asp-action="CreateTest">Add new recipe</a>
-    </p>
+<p>
+    <a asp-action="CreateTest">Add new recipe</a>
+</p>
 
-    <div class="row">
-        @foreach (var recipe in Model)
-        {
-            <div class="col-md-4">
-                <div class="card" style="width: 18rem;">
-                    <a asp-action="Details" asp-route-id="@recipe.Id">
+<div class="row">
+    @foreach (var recipe in Model)
+    {
+        <div class="col-md-4">
+            <div class="card" style="width: 14rem;">
+                <a asp-action="Details" asp-route-id="@recipe.Id">
+                    @if (!string.IsNullOrEmpty(recipe.ImageURL))
+                    {
                         <img class="card-img-top" src="@recipe.ImageURL" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title">@recipe.Title</h5>
-                            <p class="card-text">@recipe.Description</p>
+                    }
+                    else
+                    {
+                        <img class="card-img-top" src="@configuration["DefaultFoodImagePath"]" alt="Card image cap">
+                    }
 
-                        </div>
-                    </a>
+
                     
-                </div>
+
+                    <div class="card-body">
+                        <h5 class="card-title">@recipe.Title</h5>
+                        <p class="card-text">@recipe.Description</p>
+
+                    </div>
+                </a>
+
             </div>
-        }
-    </div>
+        </div>
+    }
+</div>

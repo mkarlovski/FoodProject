@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,6 +16,9 @@ namespace FoodProject.Data
         public int Views { get; set; }
 
         public DateTime DateCreated { get; set; }
+
+        public string UserId { get; set; }
+        public IdentityUser User { get; set; }
 
         public List<RecipeIngredient> RecipeIngredients { get; set; }
 

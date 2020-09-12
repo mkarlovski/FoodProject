@@ -8,6 +8,7 @@ using FoodProject.Data;
 using FoodProject.Services.Interfaces;
 using FoodProject.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 //using FoodProject.Models;
 
 namespace FoodProject.Controllers
@@ -17,11 +18,13 @@ namespace FoodProject.Controllers
     {
         private readonly IRecipeService recipeService;
         private readonly IIngredientsService ingredientsService;
+        private readonly IConfiguration configuration;
 
-        public RecipeController(IRecipeService recipeService,IIngredientsService ingredientsService)
+        public RecipeController(IRecipeService recipeService,IIngredientsService ingredientsService,IConfiguration configuration)
         {
             this.recipeService = recipeService;
             this.ingredientsService = ingredientsService;
+            this.configuration = configuration;
         }
         public IActionResult Overview()
         {
@@ -57,8 +60,9 @@ namespace FoodProject.Controllers
                 var ingredientsDB = ingredientsService.GetAllByName(recipe.Ingredients);
                 var recipeToDb = recipe.ToRecipeCreate();
 
+                var defaultImage = configuration.GetSection("DefaultFoodImagePath");
                 recipeService.Create(recipeToDb, ingredientsDB);
-                return RedirectToAction("Overview");
+                return RedirectToAction("Overview","Recipe");
             }
 
             return View(recipe);
