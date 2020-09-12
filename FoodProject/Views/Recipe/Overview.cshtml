@@ -14,9 +14,9 @@
         <div class="col-md-4">
             <div class="card" style="width: 14rem;">
                 <a asp-action="Details" asp-route-id="@recipe.Id">
-                    @if (!string.IsNullOrEmpty(recipe.ImageURL))
+                    @if (recipe.RecipeImg!=null)
                     {
-                        <img class="card-img-top" src="@recipe.ImageURL" alt="Card image cap">
+                        <img class="card-img-top" src="data:image/jpeg;base64,@Convert.ToBase64String(recipe.RecipeImg)" alt="Card image cap">
                     }
                     else
                     {

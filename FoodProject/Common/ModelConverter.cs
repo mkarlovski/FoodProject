@@ -41,7 +41,7 @@ namespace FoodProject.Common
             {
                 Id=recipe.Id,
                 Title=recipe.Title,
-                ImageURL = recipe.ImageURL,
+                RecipeImg = recipe.RecipeImage,
                 Description =recipe.Description,
                 DateCreated=recipe.DateCreated
             };
@@ -54,11 +54,23 @@ namespace FoodProject.Common
                 Title=recipe.Title,
                 Description=recipe.Description,
                 Preparation=recipe.Preparation,
-                ImageURL=recipe.ImageUrl,
+                //ImageURL=recipe.ImageUrl,
             };
         }
 
-        //public static RecipeIngredient ToRecipeIngredient(this )
+        public static RecipeManageOverview ToManageOverview(this Recipe recipe)
+        {
+            return new RecipeManageOverview
+            {
+                Id=recipe.Id,
+                Title=recipe.Title,
+                DateCreated=recipe.DateCreated,
+                //CreatedBy=recipe.User.UserName
+            };
+        }
+
+
+        
 
 
     }

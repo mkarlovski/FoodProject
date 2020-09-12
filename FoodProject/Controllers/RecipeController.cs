@@ -7,6 +7,7 @@ using FoodProject.Common;
 using FoodProject.Data;
 using FoodProject.Services.Interfaces;
 using FoodProject.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 //using FoodProject.Models;
@@ -19,12 +20,14 @@ namespace FoodProject.Controllers
         private readonly IRecipeService recipeService;
         private readonly IIngredientsService ingredientsService;
         private readonly IConfiguration configuration;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public RecipeController(IRecipeService recipeService,IIngredientsService ingredientsService,IConfiguration configuration)
+        public RecipeController(IRecipeService recipeService,IIngredientsService ingredientsService,IConfiguration configuration,UserManager<IdentityUser> userManager)
         {
             this.recipeService = recipeService;
             this.ingredientsService = ingredientsService;
             this.configuration = configuration;
+            this.userManager = userManager;
         }
         public IActionResult Overview()
         {
@@ -40,7 +43,7 @@ namespace FoodProject.Controllers
         }
 
         [HttpPost]
-        public IActionResult CreateTest([FromBody]RecipeCreateView recipe)
+        public async Task<IActionResult>  CreateTest([FromBody]RecipeCreateView recipe)
         {
             if (ModelState.IsValid)
             {
@@ -59,19 +62,30 @@ namespace FoodProject.Controllers
                 }
                 var ingredientsDB = ingredientsService.GetAllByName(recipe.Ingredients);
                 var recipeToDb = recipe.ToRecipeCreate();
+                
+                var currentUser = await userManager.GetUserAsync(User);
 
-                var defaultImage = configuration.GetSection("DefaultFoodImagePath");
-                recipeService.Create(recipeToDb, ingredientsDB);
+                recipeService.Create(recipeToDb, ingredientsDB,currentUser.Id);
                 return RedirectToAction("Overview","Recipe");
             }
 
             return View(recipe);
         }
 
+        public IActionResult ManageRecipes()
+        {
+            var recipes = recipeService.GetAll();
+            var recipeManageView = recipes.Select(x => x.ToManageOverview()).OrderByDescending(x=>x.DateCreated).ToList();
+            return View(recipeManageView);
+        }
+
 
         public IActionResult Details(int id)
         {
             var recipeDb = recipeService.GetById(id);
+            //da se dovrsi
+
+
 
             return View();
         }

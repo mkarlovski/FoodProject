@@ -8,7 +8,7 @@ namespace FoodProject.Services.Interfaces
     public interface IRecipeService
     {
         List<Recipe> GetAll();
-        void Create(Recipe recipeToDb, List<Ingredient> ingredientsDB);
+        void Create(Recipe recipeToDb, List<Ingredient> ingredientsDB,string userId);
         Recipe GetById(int id);
     }
 }

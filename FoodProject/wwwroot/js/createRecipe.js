@@ -13,7 +13,7 @@
         
     }
     var preparation = document.getElementById("recipePreparation").value;
-    var imageUrl = document.getElementById("recipeImageUrl").value;
+    //var imageUrl = document.getElementById("recipeImageUrl").value;
 
     axios.post('https://localhost:44319/Recipe/CreateTest', {
         
@@ -21,7 +21,7 @@
         description: description,
         ingredients: ingredients,
         preparation: preparation,
-        imageUrl:imageUrl
+        //imageUrl:imageUrl
     })
         .then(function (response) {
             console.log(response.data);

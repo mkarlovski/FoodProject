@@ -20,16 +20,17 @@ namespace FoodProject.Services
             this.configuration = configuration;
         }
 
-        public void Create(Recipe recipeToDb, List<Ingredient> ingredientsDB)
+        public void Create(Recipe recipeToDb, List<Ingredient> ingredientsDB,string userId)
         {
+            //da se dostavi proverka dali postoi vo baza
+
             var newRecipe = new Recipe()
             {
                 Title = recipeToDb.Title,
                 Description = recipeToDb.Description,
                 Preparation = recipeToDb.Preparation,
-                //ImageURL = recipeToDb.ImageURL,
-                //ImageURL=,
-                DateCreated = DateTime.Now
+                DateCreated = DateTime.Now,
+                //UserId=userId
             };
             
             recipeRepository.Create(newRecipe);
