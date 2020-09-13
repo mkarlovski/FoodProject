@@ -51,6 +51,11 @@ namespace FoodProject.Services
 
         }
 
+        public void Delete(Recipe recipe)
+        {
+            recipeRepository.Delete(recipe);
+        }
+
         public List<Recipe> GetAll()
         {
             return recipeRepository.GetAll();
@@ -58,11 +63,11 @@ namespace FoodProject.Services
 
         public Recipe GetById(int id)
         {
-            var recipe = recipeRepository.GetById(id);
-            recipe.Views += 1;
-            recipeRepository.Update(recipe);
+            return recipeRepository.GetById(id);
+            ////recipe.Views += 1;
+            //recipeRepository.Update(recipe);
 
-            return recipe;
+           
         }
 
         public void Update(Recipe recipeToDb)

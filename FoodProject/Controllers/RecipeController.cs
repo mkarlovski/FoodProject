@@ -103,6 +103,14 @@ namespace FoodProject.Controllers
             return View(recipe);
         }
 
+        public IActionResult Delete(int recipeId)
+        {
+            var recipe = recipeService.GetById(recipeId);
+            recipeService.Delete(recipe);
+
+            return RedirectToAction("ManageRecipes");
+        }
+
 
         public IActionResult Details(int id)
         {

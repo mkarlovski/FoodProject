@@ -23,6 +23,12 @@ namespace FoodProject.Repositories
             context.SaveChanges();
         }
 
+        public void Delete(Recipe recipe)
+        {
+            context.Recipes.Remove(recipe);
+            context.SaveChanges();
+        }
+
         public List<Recipe> GetAll()
         {
             return context.Recipes.Include(x=>x.User).ToList();
@@ -40,6 +46,7 @@ namespace FoodProject.Repositories
 
         public void Update(Recipe newRecipeFromDb)
         {
+            newRecipeFromDb.Views += 1;
             context.Recipes.Update(newRecipeFromDb);
             context.SaveChanges();
         }
