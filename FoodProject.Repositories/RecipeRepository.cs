@@ -25,7 +25,7 @@ namespace FoodProject.Repositories
 
         public List<Recipe> GetAll()
         {
-            return context.Recipes.ToList();
+            return context.Recipes.Include(x=>x.User).ToList();
         }
 
         public Recipe GetById(int id)

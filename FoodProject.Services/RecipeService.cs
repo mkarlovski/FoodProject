@@ -30,7 +30,7 @@ namespace FoodProject.Services
                 Description = recipeToDb.Description,
                 Preparation = recipeToDb.Preparation,
                 DateCreated = DateTime.Now,
-                //UserId=userId
+                UserId = userId
             };
             
             recipeRepository.Create(newRecipe);
@@ -63,6 +63,11 @@ namespace FoodProject.Services
             recipeRepository.Update(recipe);
 
             return recipe;
+        }
+
+        public void Update(Recipe recipeToDb)
+        {
+            recipeRepository.Update(recipeToDb);
         }
     }
 }

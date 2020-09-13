@@ -10,5 +10,6 @@ namespace FoodProject.Services.Interfaces
         List<Recipe> GetAll();
         void Create(Recipe recipeToDb, List<Ingredient> ingredientsDB,string userId);
         Recipe GetById(int id);
+        void Update(Recipe recipeToDb);
     }
 }

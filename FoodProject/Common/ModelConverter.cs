@@ -54,7 +54,7 @@ namespace FoodProject.Common
                 Title=recipe.Title,
                 Description=recipe.Description,
                 Preparation=recipe.Preparation,
-                //ImageURL=recipe.ImageUrl,
+                
             };
         }
 
@@ -65,12 +65,29 @@ namespace FoodProject.Common
                 Id=recipe.Id,
                 Title=recipe.Title,
                 DateCreated=recipe.DateCreated,
-                //CreatedBy=recipe.User.UserName
+                CreatedBy = recipe.User.UserName
+            };
+        }
+
+        public static RecipeAddImageView ToAddImageView(this Recipe recipe)
+        {
+            return new RecipeAddImageView 
+            {
+                Id=recipe.Id,
+                RecipeImage=recipe.RecipeImage
+            };
+        }
+
+        public static Recipe FromRecipeAddImage(this RecipeAddImageView recipe)
+        {
+            return new Recipe 
+            {
+            Id=recipe.Id,
+            RecipeImage=recipe.RecipeImage
             };
         }
 
 
-        
 
 
     }
