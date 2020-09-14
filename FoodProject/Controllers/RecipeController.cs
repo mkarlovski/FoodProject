@@ -78,7 +78,8 @@ namespace FoodProject.Controllers
                 var currentUser = await userManager.GetUserAsync(User);
 
                 recipeService.Create(recipeToDb, ingredientsDB, currentUser.Id);
-                return RedirectToAction("Overview", "Recipe");
+                //return RedirectToAction("Overview", "Recipe");
+                return Ok();
             }
 
             return View(recipe);

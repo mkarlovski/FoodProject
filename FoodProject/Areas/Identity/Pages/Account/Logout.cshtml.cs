@@ -36,7 +36,7 @@ namespace FoodProject.Areas.Identity.Pages.Account
             }
             else
             {
-                return Page();
+                return RedirectToAction("Overview","Recipe");
             }
         }
     }
