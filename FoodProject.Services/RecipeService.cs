@@ -70,6 +70,11 @@ namespace FoodProject.Services
            
         }
 
+        public List<Recipe> GetByTitleOrIngredient(string searchRecipe)
+        {
+            return recipeRepository.GetByTitleOrIngredient(searchRecipe);
+        }
+
         public void Update(Recipe recipeToDb)
         {
             recipeRepository.Update(recipeToDb);

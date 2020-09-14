@@ -8,7 +8,7 @@ using System.Text;
 
 namespace FoodProject.Repositories
 {
-    public class RecipeRepository: IRecipeRepository
+    public class RecipeRepository : IRecipeRepository
     {
         private readonly ApplicationDbContext context;
 
@@ -31,7 +31,7 @@ namespace FoodProject.Repositories
 
         public List<Recipe> GetAll()
         {
-            return context.Recipes.Include(x=>x.User).ToList();
+            return context.Recipes.Include(x => x.User).ToList();
         }
 
         public Recipe GetById(int id)
@@ -41,7 +41,16 @@ namespace FoodProject.Repositories
 
         public Recipe GetByTitle(string title)
         {
-            return context.Recipes.FirstOrDefault(x=>x.Title==title);
+            return context.Recipes.FirstOrDefault(x => x.Title == title);
+        }
+
+        public List<Recipe> GetByTitleOrIngredient(string searchRecipe)
+        {
+            return context.Recipes
+                .Include(x => x.RecipeIngredients)
+                    .ThenInclude(y => y.Ingredient)
+                        .Where(x => x.Title.Contains(searchRecipe) || x.RecipeIngredients.Any(y=>y.Ingredient.Name==searchRecipe))
+                            .ToList();
         }
 
         public void Update(Recipe newRecipeFromDb)

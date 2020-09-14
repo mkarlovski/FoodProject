@@ -30,11 +30,22 @@ namespace FoodProject.Controllers
             this.configuration = configuration;
             this.userManager = userManager;
         }
-        public IActionResult Overview()
+        public IActionResult Overview(string searchRecipe)
         {
-            var recipesDb = recipeService.GetAll();
-            var recipes = recipesDb.Select(x => x.ToRecipeOverview()).ToList();
-            return View(recipes);
+            if (string.IsNullOrEmpty(searchRecipe))
+            {
+                var recipesDb = recipeService.GetAll();
+                var recipes = recipesDb.Select(x => x.ToRecipeOverview()).ToList();
+                return View(recipes);
+            }
+            else
+            {
+                var recipesDb = recipeService.GetByTitleOrIngredient(searchRecipe);
+                var recipes= recipesDb.Select(x => x.ToRecipeOverview()).ToList();
+                return View(recipes);
+            }
+           
+
         }
 
         public IActionResult CreateTest()

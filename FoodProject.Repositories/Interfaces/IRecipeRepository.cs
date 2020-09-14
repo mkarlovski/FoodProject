@@ -13,5 +13,6 @@ namespace FoodProject.Repositories.Interfaces
         void Update(Recipe newRecipeFromDb);
         Recipe GetById(int id);
         void Delete(Recipe recipe);
+        List<Recipe> GetByTitleOrIngredient(string searchRecipe);
     }
 }
