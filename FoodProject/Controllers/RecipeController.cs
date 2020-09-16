@@ -78,7 +78,7 @@ namespace FoodProject.Controllers
                 var currentUser = await userManager.GetUserAsync(User);
 
                 recipeService.Create(recipeToDb, ingredientsDB, currentUser.Id);
-                //return RedirectToAction("Overview", "Recipe");
+                
                 return Ok();
             }
 
@@ -124,6 +124,36 @@ namespace FoodProject.Controllers
         }
 
 
+        public IActionResult Edit(int recipeId)
+        {
+           
+            var recipe = recipeService.GetById(recipeId);
+            var recipeEditView = recipe.ToRecipeEdit();         
+
+            return View(recipeEditView);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(RecipeEditViewModel recipeEdit)
+        {
+            if (ModelState.IsValid)
+            {
+                var recipeFromDb = recipeService.GetById(recipeEdit.Id);
+
+                //moze da se dostavi proverka dali postoi toj title
+                recipeFromDb.Title = recipeEdit.Title;
+                recipeFromDb.Preparation = recipeEdit.Preparation;
+                recipeFromDb.Description = recipeEdit.Description;
+                recipeService.Update(recipeFromDb);
+
+
+                return RedirectToAction("ManageRecipes");
+            }
+            return View(recipeEdit);
+        }
+
+
+
         public IActionResult Details(int id)
         {
             var recipeDb = recipeService.GetById(id);
@@ -133,6 +163,8 @@ namespace FoodProject.Controllers
 
             return View();
         }
+
+
 
 
 

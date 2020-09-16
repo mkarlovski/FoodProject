@@ -1,5 +1,6 @@
 ﻿using FoodProject.Data;
 using FoodProject.Repositories.Interfaces;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,6 +42,11 @@ namespace FoodProject.Repositories
         {
             return context.Ingredients.FirstOrDefault(x => x.Name == name);
         }
+
+        //public List<string> GetIngredientsForRecipe(int recipeId)
+        //{
+        //    return context.Ingredients.Include(x => x.RecipeIngredients.Where(y => y.RecipeId == recipeId)).ToList();
+        //}
 
         public void Remove(Ingredient ingDb)
         {         

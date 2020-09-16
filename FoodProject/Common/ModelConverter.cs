@@ -1,4 +1,6 @@
 ﻿using FoodProject.Data;
+using FoodProject.Repositories.Interfaces;
+using FoodProject.Services;
 using FoodProject.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -7,8 +9,10 @@ using System.Threading.Tasks;
 
 namespace FoodProject.Common
 {
+
     public static class ModelConverter
     {
+       
         public static IngredientOverviewModel ToOverview(this Ingredient ingredient)
         {
             return new IngredientOverviewModel 
@@ -87,7 +91,31 @@ namespace FoodProject.Common
             };
         }
 
+        public static RecipeEditViewModel ToRecipeEdit(this Recipe recipe)
+        {
 
+            return new RecipeEditViewModel 
+            {
+                Id=recipe.Id,
+                Title=recipe.Title,
+                Preparation=recipe.Preparation,
+                Description=recipe.Description
+                
+            
+            };
+        }
+
+        public static Recipe FromRecipeEdit (this RecipeEditViewModel recipe)
+        {
+            return new Recipe 
+            {
+                Id=recipe.Id,
+                Title=recipe.Title,
+                Description=recipe.Description,
+                Preparation=recipe.Preparation
+                
+            };
+        }
 
 
     }

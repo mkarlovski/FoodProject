@@ -43,6 +43,11 @@ namespace FoodProject.Services
             return ingredientsRepository.GetById(id);
         }
 
+        //public List<string> GetIngredientsForRecipe(int recipeId)
+        //{
+        //    return ingredientsRepository.GetIngredientsForRecipe(recipeId);
+        //}
+
         public void Remove(Ingredient ingDb)
         {
             ingredientsRepository.Remove(ingDb);
