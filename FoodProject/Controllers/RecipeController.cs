@@ -140,6 +140,7 @@ namespace FoodProject.Controllers
             {
                 var recipeFromDb = recipeService.GetById(recipeEdit.Id);
 
+
                 //moze da se dostavi proverka dali postoi toj title
                 recipeFromDb.Title = recipeEdit.Title;
                 recipeFromDb.Preparation = recipeEdit.Preparation;
@@ -151,6 +152,23 @@ namespace FoodProject.Controllers
             }
             return View(recipeEdit);
         }
+
+        public IActionResult EditIngredients(int recipeId)
+        {
+            var recipeIngredient = recipeService.GetById(recipeId);
+            var ingredientsIds = recipeIngredient.RecipeIngredients.Select(x => x.IngredientId).ToList();
+            var ingredientNames = new List<string>();
+
+            foreach(var item in ingredientsIds)
+            {
+                var ingName = ingredientsService.GetById(item);
+                ingredientNames.Add(ingName.Name);
+            }
+            var recipeIngEditView = ModelConverter.ToIngredientEdit(recipeId, ingredientNames);
+
+            return View(recipeIngEditView);
+        }
+
 
 
 

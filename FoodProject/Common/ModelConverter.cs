@@ -117,6 +117,15 @@ namespace FoodProject.Common
             };
         }
 
+        public static RecipeIngredientEditViewModel ToIngredientEdit(int recipeId,List<string> ingredients)
+        {
+            return new RecipeIngredientEditViewModel 
+            {
+                RecipeId=recipeId,
+                Ingredients=ingredients
+            };
+        }
+
 
     }
 }

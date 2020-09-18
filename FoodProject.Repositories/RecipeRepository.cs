@@ -55,6 +55,13 @@ namespace FoodProject.Repositories
                             .ToList();
         }
 
+        //public Recipe GetIngredientsForRecipeById(int recipeId)
+        //{
+        //    return context.Recipes
+        //        .Include(x=>x.RecipeIngredients)
+        //            .()
+        //}
+
         public void Update(Recipe newRecipeFromDb)
         {
             newRecipeFromDb.Views += 1;

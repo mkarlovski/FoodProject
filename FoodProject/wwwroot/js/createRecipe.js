@@ -13,7 +13,7 @@
         
     }
     var preparation = document.getElementById("recipePreparation").value;
-    //var imageUrl = document.getElementById("recipeImageUrl").value;
+    
     debugger;
     axios.post('https://localhost:44319/Recipe/CreateTest', {
         
@@ -21,7 +21,7 @@
         description: description,
         ingredients: ingredients,
         preparation: preparation,
-        //imageUrl:imageUrl
+        
 
     })
     
@@ -44,7 +44,7 @@ function AddIngredient() {
 
     var newList = document.createElement("li");
     newList.classList.add("addIngredientList");
-    //newList.style.listStyleType = "none";
+   
 
     var input = document.createElement("input");
     input.setAttribute("asp-for", "Ingredients[" + ingredientCount + "]");

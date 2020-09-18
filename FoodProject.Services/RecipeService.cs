@@ -64,16 +64,17 @@ namespace FoodProject.Services
         public Recipe GetById(int id)
         {
             return recipeRepository.GetById(id);
-            ////recipe.Views += 1;
-            //recipeRepository.Update(recipe);
-
-           
         }
 
         public List<Recipe> GetByTitleOrIngredient(string searchRecipe)
         {
             return recipeRepository.GetByTitleOrIngredient(searchRecipe);
         }
+
+        //public Recipe GetIngredientsForRecipeById(int recipeId)
+        //{
+        //    return recipeRepository.GetIngredientsForRecipeById(recipeId);
+        //}
 
         public void Update(Recipe recipeToDb)
         {

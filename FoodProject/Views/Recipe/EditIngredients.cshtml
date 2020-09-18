@@ -1,0 +1,49 @@
+﻿@model FoodProject.ViewModels.RecipeIngredientEditViewModel
+
+@{
+    ViewData["Title"] = "EditIngredients";
+}
+
+<h1>EditIngredients</h1>
+
+<h4>RecipeIngredientEditViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="container form-container">
+            <div class="form-group">
+                <div class="form-group">
+                    <label asp-for="RecipeId" class="control-label"></label>
+                    <input asp-for="RecipeId" class="form-control" hidden />
+                    <span asp-validation-for="RecipeId" class="text-danger"></span>
+                </div>
+            </div>
+
+            @for(var i = 0; i < Model.Ingredients.Count; i++)
+            {
+                 <div class="recipeIngList">
+                    <ul id="CreateRecipe">
+                        <li class="addIngredientList" id="Ingredients[@i]"; style="list-style-type:disc; border:none">
+                            <input asp-for="Ingredients[i]" id="recipeIngredient[@i]" class="recipeIngredientClass" type="text" placeholder="Enter Ingredient" style="border:none">
+                        </li>
+                    </ul>
+                    
+                </div>
+            }<button id="addIngredient" class="btn-sm btn-primary " onclick="AddIngredient(); return false;">+</button>
+            
+
+
+        </div>
+            
+            
+
+
+                
+        </div>
+    </div>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
