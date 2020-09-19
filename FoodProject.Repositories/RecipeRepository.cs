@@ -51,16 +51,11 @@ namespace FoodProject.Repositories
             return context.Recipes
                 .Include(x => x.RecipeIngredients)
                     .ThenInclude(y => y.Ingredient)
-                        .Where(x => x.Title.Contains(searchRecipe) || x.RecipeIngredients.Any(y=>y.Ingredient.Name==searchRecipe))
+                        .Where(x => x.Title.Contains(searchRecipe) || x.RecipeIngredients.Any(y=>y.Ingredient.Name.Contains(searchRecipe)))
                             .ToList();
         }
 
-        //public Recipe GetIngredientsForRecipeById(int recipeId)
-        //{
-        //    return context.Recipes
-        //        .Include(x=>x.RecipeIngredients)
-        //            .()
-        //}
+       
 
         public void Update(Recipe newRecipeFromDb)
         {

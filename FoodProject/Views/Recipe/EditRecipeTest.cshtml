@@ -1,0 +1,65 @@
+﻿@model FoodProject.ViewModels.RecipeEditTEST
+
+@{
+    ViewData["Title"] = "EditRecipeTest";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+
+        <div class="container form-container">
+
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+               
+                <input asp-for="Id" class="form-control" id="recipeId" hidden />
+                
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" id="recipeTitle" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" id="recipeDescription" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+
+            <div class="recipeIngList">
+                <ul id="CreateRecipe">
+                    @for (var i = 0; i < Model.Ingredients.Count; i++)
+                    {
+                        <li class="addIngredientList" id="Ingredients[@i]" ; style="list-style-type:disc; border:none">
+                            <input asp-for="Ingredients[i]" id="recipeIngredient[@i]" class="recipeIngredientClass" type="text" placeholder="Enter Ingredient" style="border:none">
+                        </li>
+                    }
+                </ul>
+            </div>
+
+            <button id="addIngredient" class="btn-sm btn-primary " onclick="AddIngredient(); return false;">+</button>
+
+            <div class="form-group">
+                <label asp-for="Preparation" class="control-label"></label>
+                <textarea asp-for="Preparation" id="recipePreparation" class="form-control"></textarea>
+                <span asp-validation-for="Preparation" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary" onclick="EditRecipe()">Add recipe</button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+
+
+@section Scripts
+{
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/js/EditRecipe.js"></script>
+}

@@ -56,6 +56,23 @@ namespace FoodProject.Services
             recipeRepository.Delete(recipe);
         }
 
+        public void EditRecipe(Recipe recipeDb, List<Ingredient> ingredientsDB)
+        {
+
+            var recipeIngredients = new List<RecipeIngredient>();
+            foreach (var ingredient in ingredientsDB)
+            {
+                var ing = new RecipeIngredient()
+                {
+                    RecipeId = recipeDb.Id,
+                    IngredientId = ingredient.Id
+                };
+                recipeIngredients.Add(ing);
+            }
+            recipeDb.RecipeIngredients = recipeIngredients;
+            recipeRepository.Update(recipeDb);
+        }
+
         public List<Recipe> GetAll()
         {
             return recipeRepository.GetAll();
@@ -71,11 +88,7 @@ namespace FoodProject.Services
             return recipeRepository.GetByTitleOrIngredient(searchRecipe);
         }
 
-        //public Recipe GetIngredientsForRecipeById(int recipeId)
-        //{
-        //    return recipeRepository.GetIngredientsForRecipeById(recipeId);
-        //}
-
+       
         public void Update(Recipe recipeToDb)
         {
             recipeRepository.Update(recipeToDb);

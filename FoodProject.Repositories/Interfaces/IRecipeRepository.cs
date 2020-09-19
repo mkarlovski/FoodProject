@@ -14,6 +14,6 @@ namespace FoodProject.Repositories.Interfaces
         Recipe GetById(int id);
         void Delete(Recipe recipe);
         List<Recipe> GetByTitleOrIngredient(string searchRecipe);
-        //Recipe GetIngredientsForRecipeById(int recipeId);
+        
     }
 }

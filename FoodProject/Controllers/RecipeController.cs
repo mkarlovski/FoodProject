@@ -182,16 +182,51 @@ namespace FoodProject.Controllers
             return View();
         }
 
+        public IActionResult EditRecipeTest(int recipeId)
+        {
+            var recipeIngredient = recipeService.GetById(recipeId);
+            var ingredientsIds = recipeIngredient.RecipeIngredients.Select(x => x.IngredientId).ToList();
+            var ingredientNames = new List<string>();
 
+            foreach (var item in ingredientsIds)
+            {
+                var ingName = ingredientsService.GetById(item);
+                ingredientNames.Add(ingName.Name);
+            }
+            var recipeEditView = recipeIngredient.ToRecipeEditTest();
+            recipeEditView.Ingredients = ingredientNames;
 
+            return View(recipeEditView);
+        }
 
+        [HttpPost]
+        public IActionResult EditRecipeTest([FromBody] RecipeEditTEST recipe)
+        {
+            if (ModelState.IsValid)
+            {
+                var ingredients = ingredientsService.GetAllByName(recipe.Ingredients).Select(x => x.Name).ToList();
+                if (recipe.Ingredients.Count != ingredients.Count)
+                {
+                    var diff = recipe.Ingredients.Except(ingredients).ToList();
+                    foreach (var ing in diff)
+                    {
+                        var newIng = new Ingredient();
+                        newIng.Name = ing;
 
+                        ingredientsService.Create(newIng);
+                    }
+                }
+                var ingredientsDB = ingredientsService.GetAllByName(recipe.Ingredients);
+                var recipeDb = recipeService.GetById(recipe.Id);
+                recipeDb.Title = recipe.Title;
+                recipeDb.Description = recipe.Description;
+                recipeDb.Preparation = recipe.Preparation;
+                recipeService.EditRecipe(recipeDb, ingredientsDB);
 
-       
+                return Ok();
+            }
 
-
-
-
-     
+            return View(recipe);
+        }
     }
 }

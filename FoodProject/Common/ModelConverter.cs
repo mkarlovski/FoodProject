@@ -126,6 +126,18 @@ namespace FoodProject.Common
             };
         }
 
+        public static RecipeEditTEST ToRecipeEditTest(this Recipe recipe)
+        {
+            return new RecipeEditTEST
+            {
+                Id = recipe.Id,
+                Title =recipe.Title,
+                Description = recipe.Description,
+                Preparation=recipe.Preparation,
+                
+            };
+        }
+
 
     }
 }

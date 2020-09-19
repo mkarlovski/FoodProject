@@ -9,5 +9,9 @@ namespace FoodProject.ViewModels
     {
         public int RecipeId { get; set; }
         public List<string> Ingredients { get; set; }
+
+
+
+
     }
 }
