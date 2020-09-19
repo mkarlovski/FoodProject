@@ -124,51 +124,7 @@ namespace FoodProject.Controllers
         }
 
 
-        public IActionResult Edit(int recipeId)
-        {
-           
-            var recipe = recipeService.GetById(recipeId);
-            var recipeEditView = recipe.ToRecipeEdit();         
-
-            return View(recipeEditView);
-        }
-
-        [HttpPost]
-        public IActionResult Edit(RecipeEditViewModel recipeEdit)
-        {
-            if (ModelState.IsValid)
-            {
-                var recipeFromDb = recipeService.GetById(recipeEdit.Id);
-
-
-                //moze da se dostavi proverka dali postoi toj title
-                recipeFromDb.Title = recipeEdit.Title;
-                recipeFromDb.Preparation = recipeEdit.Preparation;
-                recipeFromDb.Description = recipeEdit.Description;
-                recipeService.Update(recipeFromDb);
-
-
-                return RedirectToAction("ManageRecipes");
-            }
-            return View(recipeEdit);
-        }
-
-        public IActionResult EditIngredients(int recipeId)
-        {
-            var recipeIngredient = recipeService.GetById(recipeId);
-            var ingredientsIds = recipeIngredient.RecipeIngredients.Select(x => x.IngredientId).ToList();
-            var ingredientNames = new List<string>();
-
-            foreach(var item in ingredientsIds)
-            {
-                var ingName = ingredientsService.GetById(item);
-                ingredientNames.Add(ingName.Name);
-            }
-            var recipeIngEditView = ModelConverter.ToIngredientEdit(recipeId, ingredientNames);
-
-            return View(recipeIngEditView);
-        }
-
+       
 
 
 
