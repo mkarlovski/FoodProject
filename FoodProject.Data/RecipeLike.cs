@@ -9,13 +9,20 @@ namespace FoodProject.Data
     public class RecipeLike
     {
         public int Id { get; set; }
-        [Required]
-        public int RecipeId { get; set; }
-        public Recipe Recipe { get; set; }
 
         [Required]
-        public string UserId { get; set; }
+        public DateTime DateCreated { get; set; }
+
+        [Required]
+        public bool Status { get; set; }
+
+        public Recipe Recipe { get; set; }
+        [Required]
+        public int RecipeId { get; set; }
+
         public IdentityUser User { get; set; }
+        [Required]
+        public string UserId { get; set; }
 
 
     }

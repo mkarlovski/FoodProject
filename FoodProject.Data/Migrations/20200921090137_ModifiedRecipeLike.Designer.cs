@@ -4,14 +4,16 @@ using FoodProject.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace FoodProject.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200921090137_ModifiedRecipeLike")]
+    partial class ModifiedRecipeLike
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -291,7 +293,7 @@ namespace FoodProject.Data.Migrations
             modelBuilder.Entity("FoodProject.Data.RecipeLike", b =>
                 {
                     b.HasOne("FoodProject.Data.Recipe", "Recipe")
-                        .WithMany("RecipeLikes")
+                        .WithMany()
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade);
 

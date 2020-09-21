@@ -22,7 +22,7 @@ namespace FoodProject.Data
         public IdentityUser User { get; set; }
 
         public List<RecipeIngredient> RecipeIngredients { get; set; }
-
+        public List<RecipeLike> RecipeLikes { get; set; }
 
     }
 }
