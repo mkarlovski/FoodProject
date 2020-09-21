@@ -17,5 +17,9 @@ namespace FoodProject.ViewModels
         public string Description { get; set; }
         [Required]
         public DateTime DateCreated { get; set; }
+
+
+        public List<RecipeLikeModel> RecipeLikes { get; set; }
+        public RecipeLikeStatus LikeStatus { get; set; }
     }
 }

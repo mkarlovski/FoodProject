@@ -47,7 +47,19 @@ namespace FoodProject.Common
                 Title=recipe.Title,
                 RecipeImg = recipe.RecipeImage,
                 Description =recipe.Description,
-                DateCreated=recipe.DateCreated
+                DateCreated=recipe.DateCreated,
+                RecipeLikes= recipe.RecipeLikes.Select(x => ConvertToRecipeLikesViewModel(x)).ToList()
+            };
+        }
+        private static RecipeLikeModel ConvertToRecipeLikesViewModel(RecipeLike x)
+        {
+            return new RecipeLikeModel
+            {
+                Id = x.Id,
+                DateCreated = x.DateCreated,
+                Status = x.Status,
+                UserId = x.UserId,
+                RecipeId = x.RecipeId
             };
         }
 

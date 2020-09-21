@@ -30,22 +30,21 @@ namespace FoodProject.Controllers
             this.configuration = configuration;
             this.userManager = userManager;
         }
-        public IActionResult Overview(string searchRecipe)
+        public async Task<IActionResult>  Overview(string searchRecipe)
         {
-            if (string.IsNullOrEmpty(searchRecipe))
-            {
-                var recipesDb = recipeService.GetAll();
-                var recipes = recipesDb.Select(x => x.ToRecipeOverview()).ToList();
-                return View(recipes);
-            }
-            else
-            {
-                var recipesDb = recipeService.GetByTitleOrIngredient(searchRecipe);
-                var recipes= recipesDb.Select(x => x.ToRecipeOverview()).ToList();
-                return View(recipes);
-            }
-           
+            var recipesDb = recipeService.GetByTitleOrIngredient(searchRecipe);
+            var recipes = recipesDb.Select(x => x.ToRecipeOverview()).ToList();
 
+            if (User.Identity.IsAuthenticated)
+            {
+                var currentUser = await userManager.GetUserAsync(User);
+                var currentLike = recipes.Select(x => x.RecipeLikes.Where(y => y.UserId == currentUser.Id).FirstOrDefault());
+
+                
+            }
+
+
+            return View(recipes);
         }
 
         public IActionResult CreateTest()

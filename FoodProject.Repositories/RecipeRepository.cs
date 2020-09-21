@@ -48,11 +48,17 @@ namespace FoodProject.Repositories
 
         public List<Recipe> GetByTitleOrIngredient(string searchRecipe)
         {
-            return context.Recipes
+            var recipes = context.Recipes
                 .Include(x => x.RecipeIngredients)
-                    .ThenInclude(y => y.Ingredient)
-                        .Where(x => x.Title.Contains(searchRecipe) || x.RecipeIngredients.Any(y=>y.Ingredient.Name.Contains(searchRecipe)))
-                            .ToList();
+                 .ThenInclude(y => y.Ingredient).Include(x=>x.RecipeLikes)
+                 .AsQueryable();
+
+            if (!String.IsNullOrEmpty(searchRecipe))
+            {
+                recipes = recipes.Where(x => x.Title.Contains(searchRecipe) || x.RecipeIngredients.Any(y => y.Ingredient.Name.Contains(searchRecipe)));
+            }
+
+            return recipes.ToList();
         }
 
        
