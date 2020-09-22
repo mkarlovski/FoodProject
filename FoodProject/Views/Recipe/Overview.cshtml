@@ -40,16 +40,16 @@
             </a>
             @if (User.Identity.IsAuthenticated)
             {
-                if (recipe.LikeStatus == FoodProject.ViewModels.RecipeLikeStatus.None)
+                if (recipe.RecipeLikes.Any(x=>x.UserId==recipe.CurrentUserId))
                 {
-                    <button class="btn w-25 h-25" style="font-size:20px;" onclick="RecipeLike(@recipe.Id);">&#9825;</button> //heart shape
-                    <button class="btn w-25 h-25 displayNone" style="font-size:20px;" onclick="RemoveRecipeLike((@recipe.Id);" >&#10003;</button> //check sign
+                    <button class="btn w-25 h-25" style="font-size:20px; display:none" onclick="RecipeLike(@recipe.Id);">&#9825;</button> //heart shape
+                    <button class="btn w-25 h-25 " style="font-size:20px;" onclick="RemoveRecipeLike(@recipe.Id);" >&#10003;</button> //check sign
                 }
 
-                if (recipe.LikeStatus == FoodProject.ViewModels.RecipeLikeStatus.Liked)
+               else
                 {
-                    <button class="btn w-25 h-25 displayNone" style="font-size:20px;" onclick="RecipeLike(@recipe.Id)">&#9825;</button> //heart shape
-                    <button class="btn w-25 h-25" style="font-size:20px;" onclick="RemoveRecipeLike((@recipe.Id)">&#10003;</button>//check sign
+                    <button class="btn w-25 h-25" style="font-size:20px;" onclick="RecipeLike(@recipe.Id)">&#9825;</button> //heart shape
+                    <button class="btn w-25 h-25" style="font-size:20px; display:none" onclick="RemoveRecipeLike(@recipe.Id)">&#10003;</button>//check sign
                 }
 
 

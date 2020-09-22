@@ -38,8 +38,10 @@ namespace FoodProject.Controllers
             if (User.Identity.IsAuthenticated)
             {
                 var currentUser = await userManager.GetUserAsync(User);
-                var currentLike = recipes.Select(x => x.RecipeLikes.Where(y => y.UserId == currentUser.Id).FirstOrDefault());
-
+                foreach(var entity in recipes)
+                {
+                    entity.CurrentUserId = currentUser.Id;
+                }
                 
             }
 

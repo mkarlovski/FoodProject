@@ -21,5 +21,6 @@ namespace FoodProject.ViewModels
 
         public List<RecipeLikeModel> RecipeLikes { get; set; }
         public RecipeLikeStatus LikeStatus { get; set; }
+        public string CurrentUserId { get; set; }
     }
 }
