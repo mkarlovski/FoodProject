@@ -4,6 +4,10 @@
 }
 @inject IConfiguration configuration
 
+@section Styles{
+
+<link href="~/css/overviewRecipe.css" rel="stylesheet" />
+ }
 
 
     <form asp-action="Overview" method="post">
@@ -42,22 +46,24 @@
             {
                 if (recipe.RecipeLikes.Any(x=>x.UserId==recipe.CurrentUserId))
                 {
-                    <button class="btn w-25 h-25" style="font-size:20px; display:none" onclick="RecipeLike(@recipe.Id);">&#9825;</button> //heart shape
-                    <button class="btn w-25 h-25 " style="font-size:20px;" onclick="RemoveRecipeLike(@recipe.Id);" >&#10003;</button> //check sign
+                    <button  id="btnAddLike" class="btn w-25 h-25 displayNone" style="font-size:20px" onclick="RecipeLike(@recipe.Id); return false;">&#9825;</button> //heart shape
+                    <button  id="btnRemoveLike" class="btn w-25 h-25" style="font-size:20px;" onclick="RemoveRecipeLike(@recipe.Id); return false;" >&#10003;</button> //check sign
                 }
 
                else
                 {
-                    <button class="btn w-25 h-25" style="font-size:20px;" onclick="RecipeLike(@recipe.Id)">&#9825;</button> //heart shape
-                    <button class="btn w-25 h-25" style="font-size:20px; display:none" onclick="RemoveRecipeLike(@recipe.Id)">&#10003;</button>//check sign
+                    <button id="btnAddLike" class="btn w-25 h-25" style="font-size:20px;" onclick="RecipeLike(@recipe.Id);  return false;">&#9825;</button> //heart shape
+                    <button id="btnRemoveLike" class="btn w-25 h-25 displayNone" style="font-size:20px" onclick="RemoveRecipeLike(@recipe.Id);  return false;">&#10003;</button>//check sign
                 }
-
-
             }
-
         </div>
-        </div>
+       </div>
        
     </div>
     }
 </div>
+
+@section Scripts{
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/js/recipeOverview.js"></script>
+ }
