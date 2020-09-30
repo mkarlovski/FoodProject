@@ -1,37 +1,33 @@
 ﻿
 
 function RecipeLike(recipeId) {
-    axios.post('https://localhost:44319/RecipeLikes/Like', {
+    
+    axios.post('/RecipeLikes/like', {
         recipeId: recipeId
     })
-        .then(function () {
-            //var removeLikeBtn = document.getElementById("btnAddLike");
-
-            //if (!removeLikeBtn.classList.contains("displayNone")) {
-            //    DecreaseEngagementCount("dislikeCountContainer");
-            //    SwitchDisplay("btnAddDislike", "btnRemoveDislike");
-            //}
-
-
-            SwitchDisplay("btnRemoveLike", "btnAddLike");
+        .then(function (response) {
+            
+            //SwitchDisplay("btnRemoveLike", "btnAddLike");
+            window.location.href = '/recipe/overview';
         })
         .catch(function (error) {
-            console.log(error)
+            
         });
 }
 
 
 
 function RemoveRecipeLike(recipeId) {
-    axios.post('https://localhost:44319/RecipeLikes/RemoveLike', {
+    axios.post('https://localhost:44319/RecipeLikes/removeLike', {
         recipeId: recipeId
     })
-        .then(function () {
-           
+        .then(function (response) {
+            
             SwitchDisplay("btnAddLike", "btnRemoveLike");
+
         })
         .catch(function (error) {
-            console.log(error)
+          
         });
 }
 

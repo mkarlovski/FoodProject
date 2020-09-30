@@ -19,15 +19,15 @@ namespace FoodProject.Controllers
 
 
         [HttpPost]
-        public IActionResult Like([FromBody]RecipeLikeRequestModel request)
+        public IActionResult Like([FromBody] RecipeLikeRequestModel request)
         {
-            var userId = User.FindFirst("Id").Value;
-            recipeLikesService.AddLike(request.RecipeId, userId);
+            //var userId = User.FindFirst("Id").Value;
+            //recipeLikesService.AddLike(request.RecipeId, userId);
             return Ok();
         }
 
         [HttpPost]
-        public IActionResult RemoveLike([FromBody]RecipeLikeRequestModel request)
+        public IActionResult RemoveLike([FromBody] RecipeLikeRequestModel request)
         {
             var userId = User.FindFirst("Id").Value;
             recipeLikesService.RemoveLike(request.RecipeId, userId);

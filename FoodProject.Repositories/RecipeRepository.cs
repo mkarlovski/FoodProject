@@ -37,7 +37,9 @@ namespace FoodProject.Repositories
         public Recipe GetById(int id)
         {
             return context.Recipes.
-                Include(x => x.RecipeIngredients)                 
+                Include(x => x.RecipeIngredients)
+                 .ThenInclude(y => y.Ingredient)
+                 .Include(x => x.RecipeLikes)
                     .FirstOrDefault(x => x.Id == id);
         }
 

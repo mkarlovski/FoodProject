@@ -132,24 +132,27 @@ namespace FoodProject.Controllers
         public IActionResult Details(int id)
         {
             var recipeDb = recipeService.GetById(id);
-            //da se dovrsi
+            var recipeDetailView = recipeDb.ToRecipeDetails();
+            var ingredientsNames = recipeDb.RecipeIngredients.Select(x => x.Ingredient.Name).ToList();
+            recipeDetailView.Ingredients = ingredientsNames;
 
 
-
-            return View();
+            return View(recipeDetailView);
         }
 
         public IActionResult EditRecipeTest(int recipeId)
         {
             var recipeIngredient = recipeService.GetById(recipeId);
-            var ingredientsIds = recipeIngredient.RecipeIngredients.Select(x => x.IngredientId).ToList();
-            var ingredientNames = new List<string>();
 
-            foreach (var item in ingredientsIds)
-            {
-                var ingName = ingredientsService.GetById(item);
-                ingredientNames.Add(ingName.Name);
-            }
+            var ingredientNames = recipeIngredient.RecipeIngredients.Select(x => x.Ingredient.Name).ToList();
+            //var ingredientsIds = recipeIngredient.RecipeIngredients.Select(x => x.IngredientId).ToList();
+            //var ingredientNames = new List<string>();
+
+            //foreach (var item in ingredientsIds)
+            //{
+            //    var ingName = ingredientsService.GetById(item);
+            //    ingredientNames.Add(ingName.Name);
+            //}
             var recipeEditView = recipeIngredient.ToRecipeEditTest();
             recipeEditView.Ingredients = ingredientNames;
 

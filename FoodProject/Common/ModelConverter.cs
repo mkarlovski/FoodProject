@@ -39,6 +39,8 @@ namespace FoodProject.Common
             };
         }
 
+
+
         public static RecipeOverview ToRecipeOverview(this Recipe recipe)
         {
             return new RecipeOverview 
@@ -61,6 +63,22 @@ namespace FoodProject.Common
                 UserId = x.UserId,
                 RecipeId = x.RecipeId
             };
+        }
+
+        public static RecipeDetailsViewModel ToRecipeDetails(this Recipe recipe)
+        {
+            return new RecipeDetailsViewModel
+            {
+                Id = recipe.Id,
+                Title = recipe.Title,
+                RecipeImage = recipe.RecipeImage,
+                Description = recipe.Description,
+                DateCreated = recipe.DateCreated,
+                Views=recipe.Views,
+                Preparation=recipe.Preparation,               
+                RecipeLikes = recipe.RecipeLikes.Select(x=>ConvertToRecipeLikesViewModel(x)).ToList()
+            };
+           
         }
 
         public static Recipe ToRecipeCreate(this RecipeCreateView recipe)
