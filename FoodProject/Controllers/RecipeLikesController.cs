@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using FoodProject.Services.Interfaces;
 using FoodProject.ViewModels;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodProject.Controllers
@@ -11,26 +12,28 @@ namespace FoodProject.Controllers
     public class RecipeLikesController : Controller
     {
         private readonly IRecipeLikesService recipeLikesService;
+        private readonly UserManager<IdentityUser> userManager;
 
-        public RecipeLikesController(IRecipeLikesService recipeLikesService)
+        public RecipeLikesController(IRecipeLikesService recipeLikesService, UserManager<IdentityUser> userManager)
         {
             this.recipeLikesService = recipeLikesService;
+            this.userManager = userManager;
         }
 
 
         [HttpPost]
-        public IActionResult Like([FromBody] RecipeLikeRequestModel request)
+        public async Task<IActionResult> Like([FromBody] RecipeLikeRequestModel request)
         {
-            //var userId = User.FindFirst("Id").Value;
-            //recipeLikesService.AddLike(request.RecipeId, userId);
+            var user = await userManager.GetUserAsync(User);          
+            recipeLikesService.AddLike(request.RecipeId, user.Id);
             return Ok();
         }
 
         [HttpPost]
-        public IActionResult RemoveLike([FromBody] RecipeLikeRequestModel request)
+        public async Task<IActionResult> RemoveLike([FromBody] RecipeLikeRequestModel request)
         {
-            var userId = User.FindFirst("Id").Value;
-            recipeLikesService.RemoveLike(request.RecipeId, userId);
+            var user = await userManager.GetUserAsync(User);          
+            recipeLikesService.RemoveLike(request.RecipeId, user.Id);
             return Ok();
         }
     }

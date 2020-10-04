@@ -50,6 +50,8 @@ namespace FoodProject
             services.AddTransient<IRecipeService, RecipeService>();
             services.AddTransient<IIngredientsRepository, IngredientsRepository>();
             services.AddTransient<IIngredientsService, IngredientsService>();
+            services.AddTransient<IRecipeLikesRepository, RecipeLikesRepository>();
+            services.AddTransient<IRecipeLikesService,RecipeLikesService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }

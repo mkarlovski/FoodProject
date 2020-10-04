@@ -7,7 +7,7 @@ function RecipeLike(recipeId) {
     })
         .then(function (response) {
             
-            //SwitchDisplay("btnRemoveLike", "btnAddLike");
+            SwitchDisplay("btnRemoveLike", "btnAddLike");
             window.location.href = '/recipe/overview';
         })
         .catch(function (error) {
@@ -24,7 +24,7 @@ function RemoveRecipeLike(recipeId) {
         .then(function (response) {
             
             SwitchDisplay("btnAddLike", "btnRemoveLike");
-
+            window.location.href = '/recipe/overview';
         })
         .catch(function (error) {
           
