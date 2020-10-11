@@ -131,11 +131,15 @@ namespace FoodProject.Controllers
 
         public IActionResult Details(int id)
         {
-            var recipeDb = recipeService.GetById(id);
+            //var recipeDb = recipeService.GetById(id);
+            var recipeDb = recipeService.GetRecipeDetails(id);
             var recipeDetailView = recipeDb.ToRecipeDetails();
             var ingredientsNames = recipeDb.RecipeIngredients.Select(x => x.Ingredient.Name).ToList();
             recipeDetailView.Ingredients = ingredientsNames;
-
+            if (recipeDetailView.Views != 0)
+            {
+                recipeDetailView.Rating = recipeDetailView.RecipeLikes.Count * 100 / recipeDetailView.Views;
+            }
 
             return View(recipeDetailView);
         }

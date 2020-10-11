@@ -88,7 +88,15 @@ namespace FoodProject.Services
             return recipeRepository.GetByTitleOrIngredient(searchRecipe);
         }
 
-       
+        public Recipe GetRecipeDetails(int id)
+        {
+            var recipe = recipeRepository.GetById(id);
+            recipe.Views += 1;
+            recipeRepository.Update(recipe);
+            return recipe;
+            
+        }
+
         public void Update(Recipe recipeToDb)
         {
             recipeRepository.Update(recipeToDb);

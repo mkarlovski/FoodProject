@@ -17,9 +17,14 @@ namespace FoodProject.ViewModels
         public string Preparation { get; set; }
         public int Views { get; set; }
 
+        public int Rating { get; set; }
+
         public DateTime DateCreated { get; set; }
         public List<string> Ingredients { get; set; }
         public List<RecipeLikeModel> RecipeLikes { get; set; }
 
+
+      
     }
+    
 }

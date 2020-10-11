@@ -63,11 +63,9 @@ namespace FoodProject.Repositories
             return recipes.ToList();
         }
 
-       
-
         public void Update(Recipe newRecipeFromDb)
         {
-            newRecipeFromDb.Views += 1;
+            //newRecipeFromDb.Views += 1;
             context.Recipes.Update(newRecipeFromDb);
             context.SaveChanges();
         }
