@@ -17,5 +17,6 @@ namespace FoodProject.Data
         public DbSet<Ingredient> Ingredients { get; set; }
         public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
         public DbSet<RecipeLike> RecipeLikes { get; set; }
+        public DbSet<RecipeComment> RecipeComments { get; set; }
     }
 }
