@@ -14,5 +14,11 @@ namespace FoodProject.Repositories
         {
             this.context = context;
         }
+
+        public void Add(RecipeComment recipeComment)
+        {
+            context.RecipeComments.Add(recipeComment);
+            context.SaveChanges();
+        }
     }
 }

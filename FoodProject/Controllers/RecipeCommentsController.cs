@@ -29,7 +29,7 @@ namespace FoodProject.Controllers
                 var currentUser = await userManager.GetUserAsync(User);
                 recipeComments.Add(comment, recipeId, currentUser.Id);
             }
-            return RedirectToAction("Details", "Recipes", new { id = recipeId });
+            return RedirectToAction("Details", "Recipe", new { id = recipeId });
         }
     }
 }

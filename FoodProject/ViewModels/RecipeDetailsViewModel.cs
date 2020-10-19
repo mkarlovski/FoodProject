@@ -22,9 +22,10 @@ namespace FoodProject.ViewModels
         public DateTime DateCreated { get; set; }
         public List<string> Ingredients { get; set; }
         public List<RecipeLikeModel> RecipeLikes { get; set; }
+        public List<RecipeCommentModel> RecipeComments { get; set; }
 
 
-      
+
     }
-    
+
 }

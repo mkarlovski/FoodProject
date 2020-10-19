@@ -23,6 +23,8 @@ namespace FoodProject.Data
 
         public List<RecipeIngredient> RecipeIngredients { get; set; }
         public List<RecipeLike> RecipeLikes { get; set; }
+        public virtual List<RecipeComment> RecipeComments { get; set; }
+
 
     }
 }

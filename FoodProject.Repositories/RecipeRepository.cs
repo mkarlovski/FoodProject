@@ -39,8 +39,9 @@ namespace FoodProject.Repositories
             return context.Recipes.
                 Include(x => x.RecipeIngredients)
                  .ThenInclude(y => y.Ingredient)
-                 .Include(x => x.RecipeLikes)
-                    .FirstOrDefault(x => x.Id == id);
+                    .Include(x => x.RecipeLikes)
+                        .Include(z=>z.RecipeComments).ThenInclude(z=>z.User)
+                            .FirstOrDefault(x => x.Id == id);
         }
 
         public Recipe GetByTitle(string title)

@@ -76,9 +76,19 @@ namespace FoodProject.Common
                 DateCreated = recipe.DateCreated,
                 Views=recipe.Views,
                 Preparation=recipe.Preparation,               
-                RecipeLikes = recipe.RecipeLikes.Select(x=>ConvertToRecipeLikesViewModel(x)).ToList()
+                RecipeLikes = recipe.RecipeLikes.Select(x=>ConvertToRecipeLikesViewModel(x)).ToList(),
+                RecipeComments = recipe.RecipeComments.Select(x => ConvertToRecipeCommentModel(x)).ToList(),
+
+            };         
+        }
+        public static RecipeCommentModel ConvertToRecipeCommentModel(RecipeComment recipeComment)
+        {
+            return new RecipeCommentModel
+            {
+                Comment = recipeComment.Comment,
+                DateCreated = recipeComment.DateCreated,
+                Username = recipeComment.User.UserName
             };
-           
         }
 
         public static Recipe ToRecipeCreate(this RecipeCreateView recipe)
