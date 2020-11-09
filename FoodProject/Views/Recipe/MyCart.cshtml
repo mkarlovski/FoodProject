@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "MyCart";
+}
+
+<div class="container">
+    <h2>Cart</h2>
+    <div id="card-container">
+    </div>
+</div>
+
+<div class="container form-container">
+    <h2>Order</h2>
+    <hr />
+
+    <div class="form-group">
+        <label for="customerName">Name</label>
+        <input class="form-control" id="customerName" placeholder="Please enter your Name">
+    </div>
+    <div class="form-group">
+        <label for="customerEmail">Email</label>
+        <input class="form-control" id="customerEmail" placeholder="Please enter your email">
+    </div>
+    <div class="form-group">
+        <label for="customerAddress">Address</label>
+        <input class="form-control" id="customerAddress" placeholder="Please enter your address">
+    </div>
+    <div class="form-group">
+        <label for="customerPhone">Phone</label>
+        <input class="form-control" id="customerPhone" placeholder="Please enter your phone number">
+    </div>
+    <button class="btn btn-primary" onclick="orderBooks()">Order</button>
+</div>
+
+@section Scripts
+{
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="~/js/localStorageService.js"></script>
+    <script src="~/js/cart.js"></script>
+
+}
+
+

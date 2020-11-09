@@ -188,5 +188,20 @@ namespace FoodProject.Controllers
 
             return View(recipe);
         }
+
+        [HttpGet]
+        [Route("{id}")]
+        public IActionResult Get(int id)
+        {
+            var recipe = recipeService.GetById(id);
+            return Ok(recipe);
+        }
+
+
+        public IActionResult MyCart()
+        {
+            return View();
+        }
+
     }
 }
