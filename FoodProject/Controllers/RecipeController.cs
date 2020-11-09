@@ -7,6 +7,7 @@ using FoodProject.Common;
 using FoodProject.Data;
 using FoodProject.Services.Interfaces;
 using FoodProject.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +30,7 @@ namespace FoodProject.Controllers
             this.ingredientsService = ingredientsService;
             this.configuration = configuration;
             this.userManager = userManager;
+           
         }
         public async Task<IActionResult>  Overview(string searchRecipe)
         {
@@ -85,10 +87,14 @@ namespace FoodProject.Controllers
 
             return View(recipe);
         }
-
-        public IActionResult ManageRecipes()
+        [Authorize]
+        public async Task<IActionResult>  ManageRecipes()
         {
-            var recipes = recipeService.GetAll();
+            var recipes =new List<Recipe>();
+            var currentUser = await userManager.GetUserAsync(User);
+            if (await userManager.IsInRoleAsync(currentUser, "administrator")){
+                recipes = recipeService.GetAll();
+            }
             var recipeManageView = recipes.Select(x => x.ToManageOverview()).ToList();
             return View(recipeManageView.OrderByDescending(x => x.DateCreated));
         }
@@ -150,14 +156,7 @@ namespace FoodProject.Controllers
             var recipeIngredient = recipeService.GetById(recipeId);
 
             var ingredientNames = recipeIngredient.RecipeIngredients.Select(x => x.Ingredient.Name).ToList();
-            //var ingredientsIds = recipeIngredient.RecipeIngredients.Select(x => x.IngredientId).ToList();
-            //var ingredientNames = new List<string>();
-
-            //foreach (var item in ingredientsIds)
-            //{
-            //    var ingName = ingredientsService.GetById(item);
-            //    ingredientNames.Add(ingName.Name);
-            //}
+            
             var recipeEditView = recipeIngredient.ToRecipeEditTest();
             recipeEditView.Ingredients = ingredientNames;
 

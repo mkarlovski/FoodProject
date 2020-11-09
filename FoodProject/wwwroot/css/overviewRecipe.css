@@ -1,3 +1,7 @@
 ﻿.displayNone {
     display: none;
 }
+
+#searchBarRecipe{
+    width:500px;
+}
