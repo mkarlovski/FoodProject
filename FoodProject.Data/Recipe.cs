@@ -17,6 +17,7 @@ namespace FoodProject.Data
         public int Views { get; set; }
 
         public DateTime DateCreated { get; set; }
+        public int Price { get; set; }
 
         public string UserId { get; set; }
         public IdentityUser User { get; set; }

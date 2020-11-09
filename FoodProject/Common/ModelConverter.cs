@@ -74,6 +74,7 @@ namespace FoodProject.Common
                 RecipeImage = recipe.RecipeImage,
                 Description = recipe.Description,
                 DateCreated = recipe.DateCreated,
+                Price=recipe.Price,
                 Views=recipe.Views,
                 Preparation=recipe.Preparation,               
                 RecipeLikes = recipe.RecipeLikes.Select(x=>ConvertToRecipeLikesViewModel(x)).ToList(),
@@ -98,7 +99,7 @@ namespace FoodProject.Common
                 Title=recipe.Title,
                 Description=recipe.Description,
                 Preparation=recipe.Preparation,
-                
+                Price=recipe.Price
             };
         }
 
@@ -109,7 +110,8 @@ namespace FoodProject.Common
                 Id=recipe.Id,
                 Title=recipe.Title,
                 DateCreated=recipe.DateCreated,
-                CreatedBy = recipe.User.UserName
+                CreatedBy = recipe.User.UserName,
+                Price=recipe.Price
             };
         }
 
@@ -174,6 +176,7 @@ namespace FoodProject.Common
                 Title =recipe.Title,
                 Description = recipe.Description,
                 Preparation=recipe.Preparation,
+                Price=recipe.Price
                 
             };
         }

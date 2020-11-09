@@ -20,7 +20,7 @@ namespace FoodProject.Data
         [Required]
         public string Email { get; set; }
         [Required]
-        public decimal FullPrice { get; set; }
+        public int FullPrice { get; set; }
         public List<RecipeOrder> RecipeOrders { get; set; }
 
 

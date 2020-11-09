@@ -16,6 +16,7 @@ namespace FoodProject.ViewModels
 
         public string Preparation { get; set; }
         public int Views { get; set; }
+        public int Price { get; set; }
 
         public int Rating { get; set; }
 

@@ -13,14 +13,15 @@
         
     }
     var preparation = document.getElementById("recipePreparation").value;
-    
+    var price = document.getElementById("recipePrice").value;
     
     axios.post('https://localhost:44319/Recipe/CreateTest', {
         
         title: title,
         description: description,
         ingredients: ingredients,
-        preparation: preparation,       
+        preparation: preparation,   
+        price:price
     })
     
         .then(function (response) {

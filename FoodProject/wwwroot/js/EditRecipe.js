@@ -7,6 +7,7 @@
     var description = document.getElementById("recipeDescription").value;
     var ingredientList = document.getElementsByClassName("recipeIngredientClass");
     var preparation = document.getElementById("recipePreparation").value;
+    var price = document.getElementById("recipePrice").value;
 
     for (i = 0; i < ingredientList.length; i++) {
         var ingredientValue = document.getElementById("recipeIngredient[" + i + "]").value;
@@ -23,6 +24,7 @@
         description: description,
         ingredients: ingredients,
         preparation: preparation,
+        price:price
     })
         .then(function (response) {
             console.log(response.data);

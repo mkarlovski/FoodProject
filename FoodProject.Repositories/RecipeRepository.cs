@@ -39,7 +39,7 @@ namespace FoodProject.Repositories
             return context.Recipes.
                 Include(x => x.RecipeIngredients)
                  .ThenInclude(y => y.Ingredient)
-                    .Include(x => x.RecipeLikes)
+                    .Include(q => q.RecipeLikes).ThenInclude(z => z.User)
                         .Include(z=>z.RecipeComments).ThenInclude(z=>z.User)
                             .FirstOrDefault(x => x.Id == id);
         }
@@ -66,7 +66,7 @@ namespace FoodProject.Repositories
 
         public void Update(Recipe newRecipeFromDb)
         {
-            //newRecipeFromDb.Views += 1;
+           
             context.Recipes.Update(newRecipeFromDb);
             context.SaveChanges();
         }

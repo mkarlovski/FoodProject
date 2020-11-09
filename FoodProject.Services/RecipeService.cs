@@ -30,6 +30,7 @@ namespace FoodProject.Services
                 Description = recipeToDb.Description,
                 Preparation = recipeToDb.Preparation,
                 DateCreated = DateTime.Now,
+                Price=recipeToDb.Price,
                 UserId = userId
             };
             

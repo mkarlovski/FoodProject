@@ -107,7 +107,7 @@ namespace FoodProject.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult>  AddImage(RecipeAddImageView recipe, List<IFormFile> recipeImage)
+        public async Task<IActionResult> AddImage(RecipeAddImageView recipe, List<IFormFile> recipeImage)
         {
             if (ModelState.IsValid)
             {
@@ -130,11 +130,6 @@ namespace FoodProject.Controllers
             return RedirectToAction("ManageRecipes");
         }
 
-
-       
-
-
-
         public IActionResult Details(int id)
         {
            
@@ -143,10 +138,9 @@ namespace FoodProject.Controllers
             var ingredientsNames = recipeDb.RecipeIngredients.Select(x => x.Ingredient.Name).ToList();
             recipeDetailView.Ingredients = ingredientsNames;
 
-            if (recipeDetailView.Views != 0)
-            {
-                recipeDetailView.Rating = recipeDetailView.RecipeLikes.Count * 100 / recipeDetailView.Views;
-            }
+            var recipeLikeUsers = recipeDetailView.RecipeLikes.Count;
+            var users = userManager.Users.ToList().Count;
+            recipeDetailView.Rating = recipeLikeUsers * 100 / users;
 
             return View(recipeDetailView);
         }
@@ -181,10 +175,12 @@ namespace FoodProject.Controllers
                     }
                 }
                 var ingredientsDB = ingredientsService.GetAllByName(recipe.Ingredients);
+
                 var recipeDb = recipeService.GetById(recipe.Id);
                 recipeDb.Title = recipe.Title;
                 recipeDb.Description = recipe.Description;
                 recipeDb.Preparation = recipe.Preparation;
+                recipeDb.Price = recipe.Price;
                 recipeService.EditRecipe(recipeDb, ingredientsDB);
 
                 return Ok();
