@@ -55,6 +55,8 @@ namespace FoodProject
             services.AddTransient<IRecipeLikesService,RecipeLikesService>();
             services.AddTransient<IRecipeCommentsService, RecipeCommentsService>();
             services.AddTransient<IRecipeCommentsRepository, RecipeCommentsRepository>();
+            services.AddTransient<IOrderService,OrderService>();
+            services.AddTransient<IOrderRepository,OrderRepository>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
@@ -79,7 +81,7 @@ namespace FoodProject
             app.UseCookiePolicy();
 
             app.UseAuthentication();
-
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
